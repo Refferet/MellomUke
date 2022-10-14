@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2 {
+            /* font-size: 20px; */
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 7px;
+        }
+        .bilde {
+            position: relative;
+            left: 25px;
+            margin-bottom: 5px;
+            width: 150px;
+            height: 100px;
+            border-radius: 4px;
+            /* background-color: red; */
+        }
+        body{
+            margin:0px;
+            padding:0px;
+        }
+        .box{
+            margin:25px auto;
+            height:150px;
+            width:300px;
+            background-color: lightslategrey;
+        }
+        .txt{
+            font-size:20px;
+            text-align: center;
+            width: 300px;
+            height:30px;
+            background-color: rgb(59, 104, 250)
+        }
+        .user{
+            margin:15px 62px 0px ;
+        }
+        .pass{
+            margin:0 62px;
+        }
+        .logg{
+            margin:10px 0px 0 62px;
+        }
+        .Page{
+            background-color: rgb(9, 148, 136);
+            width: 100vw;
+            height: 100vh;
+        }
+        .header{
+            display: flex;
+            justify-content: center;
+            background-color: aquamarine;
+            width: 100vw;
+            height:75px;
+        }
+        .select{
+            position: absolute;
+            top: 120px;
+            left:715px;
+            width: 100px;
+            height:25px;
+            border-radius: 25px;
+            background-color: violet;
+        }
+        .card {
+            background-color: #66CDAA;
+            margin: 30px auto;
+            /* margin-top: 30px; */
+            width: 200px;
+            height: 300px;
+            /* background-color: aqua; */
+            border-radius: 10px;
+            /* border: 1px solid gray; */
+        }
+        .fotografi {
+            height: 200px;
+            width: 170px;
+            border-radius: 50%;
+            padding-top: 50px;
+            margin:auto;
+            display: block;
+            /* margin-top: 75px; */
+        }
+        .innercard {
+            margin: auto;
+            width: 190px;
+            height: 140px;
+            border-radius: 5px;
+            /* background-color: gray; */
+
+        }
+        
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+
+    let bruker = ['Chris'];
+    let pass = ['Get'];
+    let bnavn = '';
+    let bpass = '';
+    let count = 0;
+    let place = '';
+    let main = `
+        <select class="select" name="Options" onchange="firstchrisCard()">
+            <option value="" disabled selected hidden>Options</option>
+            <option value="Chris">Litt om meg</option>
+            <option value="Op"></option> `;
+
+    show();
+    function show(){
+        let html = ``;  
+        html = `<div class="box"><div class="txt">Logg inn</div><input class="user" placeholder='Brukernavn' onchange= bnavn=this.value>
+        </br>
+        <input class="pass" placeholder='Passord' type=password onchange=bpass=this.value>
+        </br>
+        <button class="logg" onclick=what()>Logg inn</button> <button class="reg" onclick=registrer()>Registrer bruker</button></div>`;
+        if(count == 1){
+            html = `
+            <div class="Page">
+                <div class="header">
+                    <h1>Utforsk siden som du måtte ønske</h1>
+                </div>
+                <div class="cont">
+                    <div class="card">
+                        ${main}
+                    </div>
+                </div>
+            </div>`;
+        }
+        document.getElementById('app').innerHTML = html;
+    }
+
+
+
+    function what(){
+        for (let i = 0; i < bruker.length; i++) {
+            if (bnavn == bruker[i] && bpass == pass[i]) {
+                count = 1;
+            }
+            show();
+        }
+    }
+    function registrer(){
+        bruker.push(bnavn);
+        pass.push(bpass);
+    }
+    function firstchrisCard() {
+        // pickStyle('#66CDAA');
+        main = `
+        <img class="fotografi" src="https://scontent.fsvg2-1.fna.fbcdn.net/v/t1.6435-9/144876730_1871234529699708_5372072537816042791_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2Bi_0DbTUv0AX_sfUgE&_nc_ht=scontent.fsvg2-1.fna&oh=00_AT98wE2tuMT2Ddll_9E8zU2XinDEfzAnDYemH7-NPAMOqA&oe=636CDFC9" alt="bilde" onclick="chrisCard()">`;
+        console.log('test');
+        show()
+    }
+    function chrisCard() {
+            main = /*html*/ `
+            <h2>Chris</h2>
+            <img class="bilde" src="https://i.imgflip.com/4725wu.png" alt="gaemr">
+            <div class="innercard">
+                <p>
+                <li>Kaster bort tid på data</li>
+                </p>
+                <p>
+                <li>Liker å stå på longboard</li>
+                </p>
+                <p>
+                <li>Har en irriterende katt</li>
+                </p>
+            </div>
+            `; show()
+        }
+</script>
+</body>
+</html>
